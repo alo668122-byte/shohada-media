@@ -8,3 +8,6 @@ google-cloud-storage
 psycopg2-binary
 cloudinary
 django-cloudinary-storage
+
+cloudinary
+django-cloudinary-storage
