@@ -6,3 +6,5 @@ pillow
 django-storages
 google-cloud-storage
 psycopg2-binary
+cloudinary
+django-cloudinary-storage
