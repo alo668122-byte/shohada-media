@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رسانه مجازی شهدا</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            background: linear-gradient(135deg, #0a0f0a 0%, #1a2f1a 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+
+        /* هدر */
+        .header {
+            background: linear-gradient(to left, #0d1f0d, #1a3a1a, #0d1f0d);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #2d5a2d;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            margin-bottom: 5px;
+        }
+
+        .header .subtitle {
+            font-size: 14px;
+            color: #a0c8a0;
+        }
+
+        /* بنر شهدا */
+        .banner {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1920x400/1a3a1a/ffd700?text=Peace+Be+Upon+Our+Martyrs');
+            background-size: cover;
+            background-position: center;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-bottom: 2px solid #4a7c4a;
+        }
+
+        .banner-text {
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.9);
+            padding: 20px;
+        }
+
+        .banner-text .green-text {
+            color: #4caf50;
+        }
+
+        .banner-text .gold-text {
+            color: #ffd700;
+        }
+
+        /* فیلتر ها */
+        .filters {
+            display: flex;
+            gap: 10px;
+            padding: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            background: #0d1f0d;
+            border-bottom: 1px solid #2d5a2d;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #3a6b3a;
+            background: transparent;
+            color: #c0d8c0;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: Tahoma;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .filter-btn:hover {
+            background: #2d4a2d;
+            border-color: #ffd700;
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: #2d5a2d;
+            border-color: #ffd700;
+            color: #ffd700;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(255,215,0,0.3);
+        }
+
+        /* شبکه مدیا */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .media-card {
+            background: linear-gradient(145deg, #1a2a1a, #0f1f0f);
+            border: 2px solid #2d4a2d;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        .media-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            border-color: #ffd700;
+        }
+
+        .media-card img, .media-card video {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 2px solid #3a6b3a;
+        }
+
+        .audio-placeholder {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(45deg, #1a3a1a, #0d2f0d);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 2px solid #3a6b3a;
+        }
+
+        .audio-icon {
+            font-size: 60px;
+            color: #ffd700;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            color: #ffd700;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .card-desc {
+            color: #a0c8a0;
+            font-size: 13px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #7a9a7a;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: linear-gradient(to left, #2d5a2d, #1a3a1a);
+            color: #ffd700;
+            border: 1px solid #4a7c4a;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 13px;
+        }
+
+        .download-btn:hover {
+            background: #3a6b3a;
+            border-color: #ffd700;
+            box-shadow: 0 0 20px rgba(255,215,0,0.2);
+        }
+
+        .audio-player {
+            width: 100%;
+            margin-top: 10px;
+            height: 40px;
+            background: #0d1f0d;
+            border-radius: 20px;
+            border: 1px solid #3a6b3a;
+        }
+
+        /* فوتر */
+        .footer {
+            background: #0a0f0a;
+            text-align: center;
+            padding: 30px;
+            border-top: 3px solid #2d5a2d;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            color: #6a8a6a;
+            font-size: 14px;
+        }
+
+        .footer .gold {
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- هدر -->
+    <div class="header">
+        <h1>رسانه مجازی شهدا</h1>
+        <p class="subtitle">پایگاه اطلاع‌رسانی و نشر آثار کارگروه رسانه شهدا</p>
+    </div>
+
+    <!-- بنر اصلی -->
+    <div class="banner">
+        <div class="banner-text">
+            <span class="green-text">سلام بر</span><br>
+            <span class="gold-text">امام زمان عج</span>
+        </div>
+    </div>
+
+    <!-- فیلترها -->
+    <div class="filters">
+        <a href="?type=all" class="filter-btn {% if current_type == 'all' %}active{% endif %}">همه</a>
+        <a href="?type=image" class="filter-btn {% if current_type == 'image' %}active{% endif %}">🖼 عکس‌ها</a>
+        <a href="?type=audio" class="filter-btn {% if current_type == 'audio' %}active{% endif %}">🎵 صوت‌ها</a>
+        <a href="?type=video" class="filter-btn {% if current_type == 'video' %}active{% endif %}">🎬 فیلم‌ها</a>
+    </div>
+
+    <!-- شبکه مدیا -->
+    <div class="media-grid">
+        {% for file in files %}
+        <div class="media-card">
+            {% if file.media_type == 'image' %}
+                <img src="{{ file.file.url }}" alt="{{ file.title }}">
+            {% elif file.media_type == 'video' %}
+                <video controls>
+                    <source src="{{ file.file.url }}" type="video/mp4">
+                    مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+                </video>
+            {% elif file.media_type == 'audio' %}
+                <div class="audio-placeholder">
+                    <div class="audio-icon">🎵</div>
+                </div>
+            {% endif %}
+
+            <div class="card-body">
+                <div class="card-title">{{ file.title }}</div>
+                {% if file.description %}
+                <div class="card-desc">{{ file.description }}</div>
+                {% endif %}
+                <div class="card-meta">
+                    <span>{{ file.get_media_type_display }}</span>
+                    <span>{{ file.created_at|date:"Y/m/d" }}</span>
+                </div>
+                {% if file.media_type == 'audio' %}
+                    <audio controls class="audio-player">
+                        <source src="{{ file.file.url }}" type="audio/mpeg">
+                        مرورگر شما از پخش صوت پشتیبانی نمی‌کند.
+                    </audio>
+                {% endif %}
+                <a href="{{ file.file.url }}" download class="download-btn" style="margin-top: 10px; display: block; text-align: center;">
+                    ⬇ دانلود
+                </a>
+            </div>
+        </div>
+        {% empty %}
+        <div style="grid-column: 1/-1; text-align: center; padding: 60px; color: #6a8a6a; font-size: 20px;">
+            <p>هیچ فایلی یافت نشد.</p>
+            <p style="font-size: 14px; margin-top: 10px;">فایل‌ها از طریق پنل ادمین قابل افزودن هستند.</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- فوتر -->
+    <div class="footer">
+        <p>رسانه مجازی شهدا - <span class="gold">شهدا مدیا</span></p>
+        <p style="margin-top: 10px;">به امید روزی که پرچم اسلام در سراسر جهان به اهتزاز درآید</p>
+    </div>
+
+</body>
+</html>
