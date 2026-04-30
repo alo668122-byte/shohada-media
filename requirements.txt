@@ -1,0 +1,8 @@
+Django==6.0.4
+gunicorn
+whitenoise
+django-environ
+pillow
+django-storages
+google-cloud-storage
+psycopg2-binary
